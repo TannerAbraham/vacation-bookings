@@ -1,9 +1,13 @@
 package com.vacation.booking.service.dto;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class PurchaseResponse {
 
     private final String orderTrackingNumber;
+
+    public PurchaseResponse(String orderTrackingNumber) {
+        this.orderTrackingNumber = orderTrackingNumber;
+    }
 }

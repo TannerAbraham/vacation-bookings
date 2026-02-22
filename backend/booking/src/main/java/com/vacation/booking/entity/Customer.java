@@ -1,75 +1,77 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "customers")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Customer {
+
+    public Customer(Division division, String address, String firstName, String lastName, String phone, String postal_code) {
+        this.division = division;
+        this.address = address;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.postal_code = postal_code;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Customer_ID")
-    private Long customerId;
+    @Column(name = "customer_id", nullable = false)
+    private Long id;
 
-    @Column(name = "First_Name", length = 255)
-    private String firstName;
-
-    @Column(name = "Last_Name", length = 255)
-    private String lastName;
-
-    @Column(name = "Address", length = 255)
-    private String address;
-
-    @Column(name = "Postal_Code", length = 255)
-    private String postalCode;
-
-    @Column(name = "Phone", length = 255)
-    private String phone;
-
-    @Column(name = "Create_Date")
-    private LocalDateTime createDate;
-
-    @Column(name = "Last_Update")
-    private LocalDateTime lastUpdate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Division_ID")
+    @ManyToOne
+    @JoinColumn(name = "division_id", nullable = false)
     private Division division;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Cart> carts;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Cart> carts = new HashSet<>();
 
-    public Customer() {}
+    public void add(Cart cart) {
 
-    public Long getCustomerId() { return customerId; }
-    public void setCustomerId(Long customerId) { this.customerId = customerId; }
+        if (cart != null) {
+            if (carts == null) {
+                carts = new HashSet<>();
+            }
+            carts.add(cart);
+            cart.setCustomer(this);
+        }
+    }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    @Column(name = "address", nullable = false)
+    private String address;
 
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    @Column(name = "create_date", nullable = false)
+    @CreationTimestamp
+    private Date create_date;
 
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
+    @Column(name = "customer_first_name", nullable = false)
+    private String firstName;
 
-    public String getPostalCode() { return postalCode; }
-    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
+    @Column(name = "customer_last_name", nullable = false)
+    private String lastName;
 
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
+    @Column(name = "last_update", nullable = false)
+    @UpdateTimestamp
+    private Date last_update;
 
-    public LocalDateTime getCreateDate() { return createDate; }
-    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
+    @Column(name = "phone", nullable = false)
+    private String phone;
 
-    public LocalDateTime getLastUpdate() { return lastUpdate; }
-    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
+    @Column(name = "postal_code", nullable = false)
+    private String postal_code;
 
-    public Division getDivision() { return division; }
-    public void setDivision(Division division) { this.division = division; }
 
-    public List<Cart> getCarts() { return carts; }
-    public void setCarts(List<Cart> carts) { this.carts = carts; }
 }

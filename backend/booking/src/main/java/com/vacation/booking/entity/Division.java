@@ -1,51 +1,48 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "DIVISIONS")
+@Table(name = "divisions")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Division {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Division_ID")
-    private Long divisionId;
+    @Column(name = "division_id")
+    private Long id;
 
-    @Column(name = "Division", length = 255)
-    private String division;
+    // Field renamed to match what Angular expects ("division_name")
+    // @Column maps it to the existing "division" column in the DB
+    @Column(name = "division")
+    private String division_name;
 
-    @Column(name = "Create_Date")
-    private LocalDateTime createDate;
+    // Exposes country_id as a plain serialized field alongside the @ManyToOne
+    // insertable/updatable = false so JPA doesn't try to write it twice
+    @Column(name = "country_id", insertable = false, updatable = false)
+    private Long country_id;
 
-    @Column(name = "Last_Update")
-    private LocalDateTime lastUpdate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Country_ID")
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
     private Country country;
+
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date create_date;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private Date last_update;
 
     @OneToMany(mappedBy = "division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Customer> customers;
-
-    public Division() {}
-
-    public Long getDivisionId() { return divisionId; }
-    public void setDivisionId(Long divisionId) { this.divisionId = divisionId; }
-
-    public String getDivision() { return division; }
-    public void setDivision(String division) { this.division = division; }
-
-    public LocalDateTime getCreateDate() { return createDate; }
-    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
-
-    public LocalDateTime getLastUpdate() { return lastUpdate; }
-    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
-
-    public Country getCountry() { return country; }
-    public void setCountry(Country country) { this.country = country; }
-
-    public List<Customer> getCustomers() { return customers; }
-    public void setCustomers(List<Customer> customers) { this.customers = customers; }
 }

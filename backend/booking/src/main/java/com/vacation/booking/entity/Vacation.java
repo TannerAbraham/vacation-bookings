@@ -1,68 +1,50 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "VACATIONS")
+@Table(name = "vacations")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Vacation_ID")
-    private Long vacationId;
+    @Column(name = "vacation_id", nullable = false)
+    private Long id;
 
-    @Column(name = "Vacation_Title", length = 255)
-    private String vacationTitle;
+    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Excursion> excursions;
 
-    @Column(name = "Description", length = 255)
+    @Column(name = "create_date", nullable = false)
+    @CreationTimestamp
+    private Date create_date;
+
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "Travel_Fare_Price")
-    private Double travelFarePrice;
+    @Column(name = "image_url", nullable = false)
+    private String image_URL;
 
-    @Column(name = "Image_URL", length = 255)
-    private String imageUrl;
+    @Column(name = "last_update", nullable = false)
+    @UpdateTimestamp
+    private Date last_update;
 
-    @Column(name = "Create_Date")
-    private LocalDateTime createDate;
+    @Column(name = "travel_fare_price", nullable = false)
+    private BigDecimal travel_price;
 
-    @Column(name = "Last_Update")
-    private LocalDateTime lastUpdate;
+    @Column(name = "vacation_title", nullable = false)
+    private String vacation_title;
 
-    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Excursion> excursions;
 
-    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CartItem> cartItems;
 
-    public Vacation() {}
-
-    public Long getVacationId() { return vacationId; }
-    public void setVacationId(Long vacationId) { this.vacationId = vacationId; }
-
-    public String getVacationTitle() { return vacationTitle; }
-    public void setVacationTitle(String vacationTitle) { this.vacationTitle = vacationTitle; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public Double getTravelFarePrice() { return travelFarePrice; }
-    public void setTravelFarePrice(Double travelFarePrice) { this.travelFarePrice = travelFarePrice; }
-
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-
-    public LocalDateTime getCreateDate() { return createDate; }
-    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
-
-    public LocalDateTime getLastUpdate() { return lastUpdate; }
-    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
-
-    public List<Excursion> getExcursions() { return excursions; }
-    public void setExcursions(List<Excursion> excursions) { this.excursions = excursions; }
-
-    public List<CartItem> getCartItems() { return cartItems; }
-    public void setCartItems(List<CartItem> cartItems) { this.cartItems = cartItems; }
 }

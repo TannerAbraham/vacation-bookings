@@ -1,44 +1,40 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "COUNTRIES")
+@Table(name = "countries")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Country_ID")
-    private Long countryId;
+    @Column(name = "country_id", nullable = false)
+    private Long id;
 
-    @Column(name = "Country", length = 255)
-    private String country;
+    //@OneToMany(mappedBy = "country")
+    //private Set<Division> divisions = new HashSet<>();
 
-    @Column(name = "Create_Date")
-    private LocalDateTime createDate;
+    @Column(name = "country", nullable = false)
+    private String country_name;
 
-    @Column(name = "Last_Update")
-    private LocalDateTime lastUpdate;
+    @Column(name = "create_date", nullable = false)
+    @CreationTimestamp
+    private Date create_date;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Division> divisions;
+    @Column(name = "last_update", nullable = false)
+    @UpdateTimestamp
+    private Date last_update;
 
-    public Country() {}
 
-    public Long getCountryId() { return countryId; }
-    public void setCountryId(Long countryId) { this.countryId = countryId; }
-
-    public String getCountry() { return country; }
-    public void setCountry(String country) { this.country = country; }
-
-    public LocalDateTime getCreateDate() { return createDate; }
-    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
-
-    public LocalDateTime getLastUpdate() { return lastUpdate; }
-    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
-
-    public List<Division> getDivisions() { return divisions; }
-    public void setDivisions(List<Division> divisions) { this.divisions = divisions; }
 }
