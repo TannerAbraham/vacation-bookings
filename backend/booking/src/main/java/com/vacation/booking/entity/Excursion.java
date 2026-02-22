@@ -1,44 +1,63 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "excursion")
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "EXCURSIONS")
 public class Excursion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Excursion_ID")
+    private Long excursionId;
 
-    @Column(name = "excursion_title")
+    @Column(name = "Excursion_Title", length = 255)
     private String excursionTitle;
 
-    @Column(name = "excursion_price")
-    private BigDecimal excursionPrice;
+    @Column(name = "Excursion_Price")
+    private Double excursionPrice;
 
-    @Column(name = "image_url")
-    private String imageURL;
+    @Column(name = "Image_URL", length = 255)
+    private String imageUrl;
 
-    @Column(name = "create_date")
+    @Column(name = "Create_Date")
     private LocalDateTime createDate;
 
-    @Column(name = "last_update")
+    @Column(name = "Last_Update")
     private LocalDateTime lastUpdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vacation_id")
+    @JoinColumn(name = "Vacation_ID")
     private Vacation vacation;
 
     @ManyToMany(mappedBy = "excursions", fetch = FetchType.LAZY)
-    private Set<CartItem> cartItems;
+    private List<CartItem> cartItems;
+
+    public Excursion() {}
+
+    public Long getExcursionId() { return excursionId; }
+    public void setExcursionId(Long excursionId) { this.excursionId = excursionId; }
+
+    public String getExcursionTitle() { return excursionTitle; }
+    public void setExcursionTitle(String excursionTitle) { this.excursionTitle = excursionTitle; }
+
+    public Double getExcursionPrice() { return excursionPrice; }
+    public void setExcursionPrice(Double excursionPrice) { this.excursionPrice = excursionPrice; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public LocalDateTime getCreateDate() { return createDate; }
+    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
+
+    public LocalDateTime getLastUpdate() { return lastUpdate; }
+    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
+
+    public Vacation getVacation() { return vacation; }
+    public void setVacation(Vacation vacation) { this.vacation = vacation; }
+
+    public List<CartItem> getCartItems() { return cartItems; }
+    public void setCartItems(List<CartItem> cartItems) { this.cartItems = cartItems; }
 }

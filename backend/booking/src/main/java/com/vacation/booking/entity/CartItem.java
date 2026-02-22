@@ -1,43 +1,57 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "cart_item")
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "CART_ITEMS")
 public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Cart_Item_ID")
+    private Long cartItemId;
+
+    @Column(name = "Create_Date")
+    private LocalDateTime createDate;
+
+    @Column(name = "Last_Update")
+    private LocalDateTime lastUpdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vacation_id")
+    @JoinColumn(name = "Cart_ID")
+    private Cart cart;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Vacation_ID")
     private Vacation vacation;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "cart_item_excursion",
-            joinColumns = @JoinColumn(name = "cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "excursion_id")
+        name = "excursion_cartitem",
+        joinColumns = @JoinColumn(name = "Cart_Item_ID"),
+        inverseJoinColumns = @JoinColumn(name = "Excursion_ID")
     )
-    private Set<Excursion> excursions;
+    private List<Excursion> excursions;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    public CartItem() {}
 
-    @Column(name = "create_date")
-    private LocalDateTime createDate;
+    public Long getCartItemId() { return cartItemId; }
+    public void setCartItemId(Long cartItemId) { this.cartItemId = cartItemId; }
 
-    @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
+    public LocalDateTime getCreateDate() { return createDate; }
+    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
+
+    public LocalDateTime getLastUpdate() { return lastUpdate; }
+    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
+
+    public Cart getCart() { return cart; }
+    public void setCart(Cart cart) { this.cart = cart; }
+
+    public Vacation getVacation() { return vacation; }
+    public void setVacation(Vacation vacation) { this.vacation = vacation; }
+
+    public List<Excursion> getExcursions() { return excursions; }
+    public void setExcursions(List<Excursion> excursions) { this.excursions = excursions; }
 }

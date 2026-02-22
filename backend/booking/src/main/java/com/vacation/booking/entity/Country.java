@@ -1,33 +1,44 @@
 package com.vacation.booking.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "country")
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "COUNTRIES")
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Country_ID")
+    private Long countryId;
 
-    @Column(name = "country_name")
-    private String countryName;
+    @Column(name = "Country", length = 255)
+    private String country;
 
-    @Column(name = "create_date")
+    @Column(name = "Create_Date")
     private LocalDateTime createDate;
 
-    @Column(name = "last_update")
+    @Column(name = "Last_Update")
     private LocalDateTime lastUpdate;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Division> divisions;
+    private List<Division> divisions;
+
+    public Country() {}
+
+    public Long getCountryId() { return countryId; }
+    public void setCountryId(Long countryId) { this.countryId = countryId; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public LocalDateTime getCreateDate() { return createDate; }
+    public void setCreateDate(LocalDateTime createDate) { this.createDate = createDate; }
+
+    public LocalDateTime getLastUpdate() { return lastUpdate; }
+    public void setLastUpdate(LocalDateTime lastUpdate) { this.lastUpdate = lastUpdate; }
+
+    public List<Division> getDivisions() { return divisions; }
+    public void setDivisions(List<Division> divisions) { this.divisions = divisions; }
 }
