@@ -1,10 +1,10 @@
-package com.vacation.booking.backend;
+package com.vacation.booking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class BookingApplicationTests {
 
 	@Test
 	void contextLoads() {
