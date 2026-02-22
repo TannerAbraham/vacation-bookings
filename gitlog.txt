@@ -1,0 +1,11 @@
+commit d78317039c5e501c6fb864353334f1e5097e43db
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 08:58:22 2026 -0500
+
+    A. Create a new Java project using Spring Initializr
+
+commit b55a98dc35699860b929b0e0b621ec589ccb5267
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Thu Feb 5 02:54:22 2026 -0500
+
+    Initial commit
