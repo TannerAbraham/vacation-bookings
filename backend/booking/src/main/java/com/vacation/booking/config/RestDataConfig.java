@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
  * @version 0.1
  * @since 2023-02-27
  */
+
 @Configuration
 public class RestDataConfig implements RepositoryRestConfigurer {
 
