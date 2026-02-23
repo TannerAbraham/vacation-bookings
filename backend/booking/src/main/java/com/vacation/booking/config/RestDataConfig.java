@@ -4,6 +4,7 @@ import com.vacation.booking.entity.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 /**
@@ -42,8 +43,7 @@ public class RestDataConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Vacation.class);
         config.setDefaultPageSize(Integer.MAX_VALUE);
         config.setMaxPageSize(Integer.MAX_VALUE);
-
-
+        config.setDefaultMediaType(MediaType.APPLICATION_JSON); // add this
     }
 }
 
