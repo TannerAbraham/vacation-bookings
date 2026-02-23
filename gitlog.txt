@@ -1,3 +1,75 @@
+commit 0d454756901689856454de6383ad45ea190070f9
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Mon Feb 23 08:19:13 2026 -0500
+
+    J. Run your integrated application by adding a customer order for a vacation with two excursions using the unmodified Angular front-end. (w/. Provided screenshots )
+
+commit 4c761f87608af8c5774f23b35f79bec5810165cf
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Mon Feb 23 07:13:47 2026 -0500
+
+    I. Add five sample customers to the application programmatically.
+
+commit 5a6698bb3137022d4b0ddb1eb501ff81fb4bdc93
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Mon Feb 23 03:49:44 2026 -0500
+
+    Fixed empty form submit for add new customer feature
+
+commit ee89a074098db8f403cf676d8ac7ac320f512f46
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 19:55:31 2026 -0500
+
+    Divisoins displaying on add customer page - fix
+
+commit ea2ff613c46f6aa709a968f9b7c006d335372e91
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 18:27:47 2026 -0500
+
+    Fixed Order Tracking Number not displaying issue
+
+commit dd27f49e8873d51f0cbf3f50524456b93d354b0d
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 12:31:36 2026 -0500
+
+    H. Write code for the controllers package that includes a REST controller checkout controller class with a post mapping to place orders
+
+commit 50aa588b9130289c6892cced2bcedc9feb5503d0
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 12:15:59 2026 -0500
+
+    G. Write code to include validation to enforce the inputs needed by the Angular front-end
+
+commit f9a7eead50400772c6b56c2d0a28245d66c93222
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 11:21:06 2026 -0500
+
+    F. Write code for the services package
+
+commit e47a38857a62bd6ac958eb4cfc9b24367a314bf4
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 10:31:32 2026 -0500
+
+    E. Write code for the dao package that includes repository interfaces for the entities that extend JpaRepository, and add cross-origin support
+
+commit 501eee8de1dc2e55946355febbf22e41ac6d27b0
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 10:06:30 2026 -0500
+
+    D. Write code for the entities package that includes entity classes and the enum designed to match the UML diagram
+
+commit 044c69873bded9ce33adf2d997f534a9fc70df8a
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 09:27:58 2026 -0500
+
+    C. Construct four new packages, one for each of the following: controllers, entities, dao, and services
+
+commit 4d2e09e6b52688c77edc0e8d405bc488fdb24697
+Author: Tanner Abraham <tannersuccess@gmail.com>
+Date:   Sun Feb 22 09:22:45 2026 -0500
+
+    B. Create your subgroup and project by logging into GitLab
+
 commit d78317039c5e501c6fb864353334f1e5097e43db
 Author: Tanner Abraham <tannersuccess@gmail.com>
 Date:   Sun Feb 22 08:58:22 2026 -0500
