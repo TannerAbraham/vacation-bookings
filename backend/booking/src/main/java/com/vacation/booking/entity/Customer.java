@@ -18,15 +18,6 @@ import java.util.Set;
 @Setter
 public class Customer {
 
-    public Customer(Division division, String address, String firstName, String lastName, String phone, String postal_code) {
-        this.division = division;
-        this.address = address;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.postal_code = postal_code;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id", nullable = false)
@@ -38,6 +29,15 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Cart> carts = new HashSet<>();
+
+    public Customer(Division division, String address, String firstName, String lastName, String phone, String postal_code) {
+        this.division = division;
+        this.address = address;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.postal_code = postal_code;
+    }
 
     public void add(Cart cart) {
 
